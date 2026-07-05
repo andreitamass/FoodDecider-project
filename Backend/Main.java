@@ -1,7 +1,6 @@
 package Backend;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 import Backend.FoodMananger;
 
 public class Main {
