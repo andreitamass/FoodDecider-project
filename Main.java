@@ -16,24 +16,36 @@ public class Main {
         current_choices.add(list.get(1));
         current_choices.add(list.get(2));
 
-        for (int i = 0; i < current_choices.size(); i++ ) { //visar index alternativ + current maträtter
-            System.out.println(i  + ": " + current_choices.get(i));
-        }
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Vilken maträtt vill du ta bort");
-        int index = scanner.nextInt();
-
         ArrayList<FoodOptions> rejected_choices = new ArrayList<>(); // Rätterna användaren har tackat nej till
 
-        if (replacementChecker(list, current_choices, rejected_choices)) { //Anropar metoderna, kollar om det finns ersättning, om inte stoppas programmet
-            rejectedFood(list, current_choices, rejected_choices, index);
-            foodReplacement(list, current_choices, rejected_choices);
-            System.out.println("Uppdaterad rätter: " + current_choices);
-        } else {
-            System.out.println("Nu finns det inte fler rätter!");
-            return;
+        Scanner scanner = new Scanner(System.in);
+
+        while(replacementChecker(list, current_choices, rejected_choices)) {
+            for (int i = 0; i < current_choices.size(); i++ ) { //visar index alternativ + current maträtter
+                System.out.println(i  + ": " + current_choices.get(i));
+            }
+
+            System.out.println("Vilken maträtt vill du ta bort");
+
+            if(scanner.hasNextInt()) {
+                int index = scanner.nextInt();
+
+                if(index >= 0 && index < current_choices.size()) {
+                     rejectedFood(list, current_choices, rejected_choices, index);
+                    foodReplacement(list, current_choices, rejected_choices);
+                } else {
+                    System.out.println("Alternativ finns inte!");
+                }
+
+            } else {
+                System.out.println("Text är inte tilltåten!");
+                scanner.next();
+            }
         }
+        System.out.println("Nu finns det inte fler rätter!");
+        System.out.println(current_choices);
+        return;
+
     }
 
     public static void rejectedFood(ArrayList<FoodOptions> list, ArrayList<FoodOptions> current_choices, ArrayList<FoodOptions> rejected_choices, int index) {
