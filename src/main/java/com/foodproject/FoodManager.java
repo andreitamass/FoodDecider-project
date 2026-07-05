@@ -68,15 +68,15 @@ public class FoodManager {
 
     }
 
-    public boolean foodReplacement() {
+    public boolean foodReplacement(int index) {
 
         boolean foundReplacement = false;
 
         for (FoodOptions i : list) { // Loopar igenom hela mat listan, kontrollerar om maträtten finns i current och rejected
             if (!current_choices.contains(i) && !rejected_choices.contains(i)) {
                 foundReplacement = true;
-                current_choices.add(i);
-                System.out.println("Ny mat rätt: " + i);
+                current_choices.set(index, i);
+                System.out.println("Ny mat rätt: " + i); //Terminal check
                 break;
             }
 

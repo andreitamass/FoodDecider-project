@@ -2,10 +2,8 @@ const button = document.getElementById("choose-btn");
 
 button.addEventListener("click", () => {
 
-    // Göm startsidan
     document.getElementById("start-screen").style.display = "none";
 
-    // Visa matsidan
     document.getElementById("food-screen").style.display = "block";
 
     fetch("/current")
