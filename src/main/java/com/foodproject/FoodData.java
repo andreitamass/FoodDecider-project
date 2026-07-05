@@ -1,4 +1,4 @@
-package Backend;
+package com.foodproject;
 import java.util.ArrayList;
 
 public class FoodData {

@@ -1,4 +1,4 @@
-package Backend;
+package com.foodproject;
 public class FoodOptions {
 
     private String foodName;
