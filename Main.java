@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,12 +16,18 @@ public class Main {
         current_choices.add(list.get(1));
         current_choices.add(list.get(2));
 
-        System.out.println(current_choices); //printar ut dem 3 alternativ användaren har nu
+        for (int i = 0; i < current_choices.size(); i++ ) { //visar index alternativ + current maträtter
+            System.out.println(i  + ": " + current_choices.get(i));
+        }
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Vilken maträtt vill du ta bort");
+        int index = scanner.nextInt();
 
         ArrayList<FoodOptions> rejected_choices = new ArrayList<>(); // Rätterna användaren har tackat nej till
 
         if (replacementChecker(list, current_choices, rejected_choices)) { //Anropar metoderna, kollar om det finns ersättning, om inte stoppas programmet
-            rejectedFood(list, current_choices, rejected_choices, 0);
+            rejectedFood(list, current_choices, rejected_choices, index);
             foodReplacement(list, current_choices, rejected_choices);
             System.out.println("Uppdaterad rätter: " + current_choices);
         } else {

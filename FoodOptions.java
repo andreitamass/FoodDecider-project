@@ -24,7 +24,7 @@ public class FoodOptions {
 
    @Override
    public String toString() {
-        return "| Maträtt: " + this.foodName + 
+        return "Maträtt: " + this.foodName + 
         ", Kök: " + this.foodType +
         ", Pris: " + this.foodPrice + " SEK";
    }
