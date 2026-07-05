@@ -28,7 +28,7 @@ public class Main {
             System.out.println("Vilken maträtt vill du ta bort");
 
             if(scanner.hasNextInt()) {
-                int index = scanner.nextInt();
+                int index = scanner.nextInt(); //Kontrollerar om indexet finns
 
                 if(index >= 0 && index < current_choices.size()) {
                      rejectedFood(list, current_choices, rejected_choices, index);
@@ -49,10 +49,6 @@ public class Main {
     }
 
     public static void rejectedFood(ArrayList<FoodOptions> list, ArrayList<FoodOptions> current_choices, ArrayList<FoodOptions> rejected_choices, int index) {
-
-        if (index >= current_choices.size()) {
-            return;
-        }
 
           if (current_choices.isEmpty()) {
             return;
@@ -119,4 +115,4 @@ public class Main {
 
 // Logiken fungerar - stoppar krasch när det inte finns fler ersättare - fixat
 
-// I slutet visas endast 2 kort, då den redan ersatt sista korten - ONGOING
+// I slutet visas endast 2 kort, då den redan ersatt sista korten - fixat
