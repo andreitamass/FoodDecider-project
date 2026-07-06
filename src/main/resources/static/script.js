@@ -18,6 +18,8 @@ button.addEventListener("click", () => {
 
                 const div = document.createElement("div");
 
+                div.classList.add("food-card");
+
                 div.innerHTML = `
                     <h2>${food.foodName}</h2>
                     <p>${food.foodType}</p>
@@ -25,6 +27,7 @@ button.addEventListener("click", () => {
                 `;
 
                 container.appendChild(div);
+                
             });
 
         });

@@ -10,6 +10,13 @@ body {
     margin: 0;
 }
 
+#start-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 h1 {
     color: #5A412F;
     font-family: 'Nunito', sans-serif;
@@ -55,4 +62,19 @@ h4 {
     width: 900px;
     pointer-events: none;
 
+}
+
+#food-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.food-card {
+    width: 250px;
+    height: 350px;
+    border: 1px solid #5A412F;
+    border-radius: 3px;
+    padding: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
