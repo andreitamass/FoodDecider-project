@@ -7,6 +7,7 @@ body {
     width: 100%;
     background-color: #F5EFE6;
     gap: 10px;
+    margin: 0;
 }
 
 h1 {
@@ -19,7 +20,14 @@ h2 {
     color: #5A412F;
     font-family: 'Nunito', sans-serif;
     font-size: 15px;
-    margin-bottom: 250px;
+    margin-bottom: 50px;
+}
+
+h4 {
+    color: #5A412F;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    opacity: 1;
 }
 
 #choose-btn {
@@ -36,4 +44,15 @@ h2 {
 
 #choose-btn:hover {
     background-color: #5A412F;
+}
+
+#pizza {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.07;
+    width: 900px;
+    pointer-events: none;
+
 }
