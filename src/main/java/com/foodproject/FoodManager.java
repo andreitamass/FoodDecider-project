@@ -25,6 +25,16 @@ public class FoodManager {
 
     }
 
+    public void replaceFood(int index) {
+        if (!replacementChecker()) {
+            return;
+        }
+
+        rejectedFood(index);
+        foodReplacement(index);
+
+    }
+
     public ArrayList<FoodOptions> getAllFoods() {
         return list;
     }
