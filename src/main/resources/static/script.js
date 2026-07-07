@@ -22,8 +22,11 @@ button.addEventListener("click", () => {
 
                 div.innerHTML = `
                     <h2>${food.foodName}</h2>
-                    <p>${food.foodType}</p>
-                    <p>${food.foodPrice} SEK</p>
+
+                    <div class="food-image">
+                    </div>
+
+                    <button>Byt maträtt</button>
                 `;
 
                 container.appendChild(div);
