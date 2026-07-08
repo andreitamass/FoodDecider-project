@@ -25,13 +25,15 @@ public class FoodManager {
 
     }
 
-    public void replaceFood(int index) { //make endpoint
+    public boolean replaceFood(int index) { //make endpoint
         if (!replacementChecker()) {
-            return;
+            return false;
         }
 
         rejectedFood(index);
         foodReplacement(index);
+
+        return true;
 
     }
 
@@ -50,8 +52,6 @@ public class FoodManager {
         }
 
         rejected_choices.add(current_choices.get(index));
-
-        current_choices.remove(index);
         
         }
 

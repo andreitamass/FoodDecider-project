@@ -14,7 +14,7 @@ button.addEventListener("click", () => {
 
             container.innerHTML = "";
 
-            data.forEach((food, index) => { //ger maträtten i listan från array i endpointen, samt indexet
+            data.forEach((food, index) => { //lägger maträtten i listan från array i endpointen, samt indexet
 
                 const div = document.createElement("div");
 
@@ -42,6 +42,8 @@ button.addEventListener("click", () => {
                     .then(response => response.json())
                     .then(data => {
 
+                        div.querySelector("h2").innerHTML = data[index].foodName
+                        
                     });
                 })
 
