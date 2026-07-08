@@ -25,7 +25,7 @@ public class FoodManager {
 
     }
 
-    public void replaceFood(int index) {
+    public void replaceFood(int index) { //make endpoint
         if (!replacementChecker()) {
             return;
         }
