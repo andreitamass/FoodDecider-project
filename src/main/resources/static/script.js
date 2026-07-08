@@ -14,7 +14,7 @@ button.addEventListener("click", () => {
 
             container.innerHTML = "";
 
-            data.forEach(food => {
+            data.forEach((food, index) => { //ger maträtten i listan från array i endpointen, samt indexet
 
                 const div = document.createElement("div");
 
@@ -30,9 +30,30 @@ button.addEventListener("click", () => {
                 `;
 
                 container.appendChild(div);
+
+                const replaceButton = div.querySelector("button"); //Tar knappen från div, letar inte igenom hela docuemnt
+
+                replaceButton.addEventListener("click", () => {
+                    fetch(`/replace?index=${index}`,
+                        {   
+                            method: "POST",
+
+                        })
+                    .then(response => response.json())
+                    .then(data => {
+
+                    });
+                })
+
                 
             });
 
         });
 
 });
+
+fetch("/echo/json/",
+{
+    method: "POST",
+    body: data
+})
