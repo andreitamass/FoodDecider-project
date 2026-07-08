@@ -23,9 +23,11 @@ public class FoodController {
 
     @PostMapping("/replace")
     public ArrayList<FoodOptions> getReplaceFood(@RequestParam int index) {
-        foodManager.replaceFood(index);
-
-        return foodManager.getCurrentOptions();
+        if (foodManager.replaceFood(index)) {
+            return foodManager.getCurrentOptions();
+        } else {
+            return "Misslyckad"; //changing to ResponseEntity
+        }
     }
 
 }
