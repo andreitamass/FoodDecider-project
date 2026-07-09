@@ -1,5 +1,7 @@
 const button = document.getElementById("choose-btn");
 
+const message = document.getElementById("message");
+
 button.addEventListener("click", () => {
 
     document.getElementById("start-screen").style.display = "none";
@@ -39,13 +41,26 @@ button.addEventListener("click", () => {
                             method: "POST",
 
                         })
-                    .then(response => response.json())
+
+                    .then(response => { //kollar response i foodcontroller för att visa 200 eller felmeddelande
+                        if(response.ok) {
+                            return response.json()
+                        } else {
+                           return response.text()
+                        }
+
+                    })
                     .then(data => {
 
-                        div.querySelector("h2").innerHTML = data[index].foodName
+                        if(Array.isArray(data)) {
+                            div.querySelector("h2").innerHTML = data[index].foodName
+                        } else {
+                            message.innerHTML = data
+                        }
+
                         
                     });
-                })
+                });
 
                 
             });
