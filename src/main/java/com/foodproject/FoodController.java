@@ -1,5 +1,8 @@
 package com.foodproject;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,11 +25,18 @@ public class FoodController {
     }
 
     @PostMapping("/replace")
-    public ArrayList<FoodOptions> getReplaceFood(@RequestParam int index) {
+    public ResponseEntity<Object> getReplaceFood(@RequestParam int index) {
+
+        String responseBody = "Finns ingen mer ersättningsmat";
+
         if (foodManager.replaceFood(index)) {
-            return foodManager.getCurrentOptions();
+            return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(getCurrenOptions());
         } else {
-            return "Misslyckad"; //changing to ResponseEntity
+            return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(responseBody);
         }
     }
 
