@@ -26,7 +26,7 @@ public class FoodController {
     @PostMapping("/replace")
     public ResponseEntity<Object> getReplaceFood(@RequestParam int index) {
 
-        String responseBody = "Finns ingen mer ersättningsmat";
+        String responseBody = "Finns ingen mer ersättningsmat!";
 
         if (foodManager.replaceFood(index)) {
             return ResponseEntity
