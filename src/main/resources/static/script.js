@@ -4,6 +4,20 @@ const message = document.getElementById("message");
 
 button.addEventListener("click", () => {
 
+    let timer = 30;
+
+    document.getElementById("timer").innerHTML = "Timern har nu börjat: " + timer;
+
+    let interval = setInterval(function(){
+        timer--;
+    document.getElementById("timer").innerHTML = "Timern har nu börjat: " + timer;
+        if(timer === 0) {
+            clearInterval(interval);
+            document.getElementById("timer").innerHTML = "Nu är timern slut!";
+        }
+
+    }, 1000)
+
     document.getElementById("start-screen").style.display = "none";
 
     document.getElementById("food-screen").style.display = "block";
