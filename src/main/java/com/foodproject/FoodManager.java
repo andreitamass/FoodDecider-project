@@ -101,5 +101,17 @@ public class FoodManager {
 
     }
 
+    public void resetChoices() {
+
+        current_choices.clear();
+        rejected_choices.clear();
+
+        Collections.shuffle(list);
+
+        current_choices.add(list.get(0));
+        current_choices.add(list.get(1));
+        current_choices.add(list.get(2));
+
+    }
 
 }
