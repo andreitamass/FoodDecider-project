@@ -14,10 +14,14 @@ button.addEventListener("click", () => {
         if(timer === 0) {
             clearInterval(interval);
             document.getElementById("timer").innerHTML = "Nu är timern slut!";
+
+            document.querySelectorAll(".food-card button").forEach((button) => {
+                button.disabled = true;
+            });
         }
 
     }, 1000)
-
+    
     document.getElementById("start-screen").style.display = "none";
 
     document.getElementById("food-screen").style.display = "block";
