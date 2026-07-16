@@ -38,5 +38,11 @@ public class FoodController {
                 .body(responseBody);
         }
     }
+    
+    @PostMapping("/reset")
+    public ArrayList<FoodOptions> resetCurrent() {
+        foodManager.resetChoices();
 
+        return getCurrenOptions();
+    }
 }

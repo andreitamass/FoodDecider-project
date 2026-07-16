@@ -2,8 +2,10 @@ const button = document.getElementById("choose-btn");
 
 const message = document.getElementById("message");
 
-button.addEventListener("click", () => {
+const resetButton = document.getElementById("reset-button");
 
+
+function startProgram() {
     let timer = 30;
 
     document.getElementById("timer").innerHTML = "Timern har nu börjat: " + timer;
@@ -84,11 +86,17 @@ button.addEventListener("click", () => {
             });
 
         });
+}
 
+button.addEventListener("click", () => {
+   startProgram(); 
+})
+
+resetButton.addEventListener("click", () => {
+    fetch("/reset")
+    .then(response => response.json())
+    .then(data => {
+        startProgram()
+    })
 });
 
-fetch("/echo/json/",
-{
-    method: "POST",
-    body: data
-})
