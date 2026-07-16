@@ -4,45 +4,50 @@ const message = document.getElementById("message");
 
 const resetButton = document.getElementById("reset-button");
 
+let interval;
 
 function startProgram() {
-    let timer = 30;
+  let timer = 30;
 
-    document.getElementById("timer").innerHTML = "Timern har nu börjat: " + timer;
+  document.getElementById("timer").innerHTML = "Timern har nu börjat: " + timer;
 
-    let interval = setInterval(function(){
-        timer--;
-    document.getElementById("timer").innerHTML = "Timern har nu börjat: " + timer;
-        if(timer === 0) {
-            clearInterval(interval);
-            document.getElementById("timer").innerHTML = "Nu är timern slut!";
+  if(interval !== undefined ) {
+    clearInterval(interval);
+  }
 
-            document.querySelectorAll(".food-card button").forEach((button) => {
-                button.disabled = true;
-            });
-        }
+    interval = setInterval(function () {
+    timer--;
+    document.getElementById("timer").innerHTML =
+      "Timern har nu börjat: " + timer;
+    if (timer === 0) {
+      clearInterval(interval);
+      document.getElementById("timer").innerHTML = "Nu är timern slut!";
 
-    }, 1000)
-    
-    document.getElementById("start-screen").style.display = "none";
+      document.querySelectorAll(".food-card button").forEach((button) => {
+        button.disabled = true;
+      });
+    }
+  }, 1000);
 
-    document.getElementById("food-screen").style.display = "block";
+  document.getElementById("start-screen").style.display = "none";
 
-    fetch("/current")
-        .then(response => response.json())
-        .then(data => {
+  document.getElementById("food-screen").style.display = "block";
 
-            const container = document.getElementById("food-container");
+  fetch("/current")
+    .then((response) => response.json())
+    .then((data) => {
+      const container = document.getElementById("food-container");
 
-            container.innerHTML = "";
+      container.innerHTML = "";
 
-            data.forEach((food, index) => { //lägger maträtten i listan från array i endpointen, samt indexet
+      data.forEach((food, index) => {
+        //lägger maträtten i listan från array i endpointen, samt indexet
 
-                const div = document.createElement("div");
+        const div = document.createElement("div");
 
-                div.classList.add("food-card");
+        div.classList.add("food-card");
 
-                div.innerHTML = `
+        div.innerHTML = `
                     <h2>${food.foodName}</h2>
 
                     <div class="food-image">
@@ -51,52 +56,45 @@ function startProgram() {
                     <button>Byt maträtt</button>
                 `;
 
-                container.appendChild(div);
+        container.appendChild(div);
 
-                const replaceButton = div.querySelector("button"); //Tar knappen från div, letar inte igenom hela docuemnt
+        const replaceButton = div.querySelector("button"); //Tar knappen från div, letar inte igenom hela docuemnt
 
-                replaceButton.addEventListener("click", () => {
-                    fetch(`/replace?index=${index}`,
-                        {   
-                            method: "POST",
-
-                        })
-
-                    .then(response => { //kollar response i foodcontroller för att visa 200 eller felmeddelande
-                        if(response.ok) {
-                            return response.json()
-                        } else {
-                           return response.text()
-                        }
-
-                    })
-                    .then(data => {
-
-                        if(Array.isArray(data)) {
-                            div.querySelector("h2").innerHTML = data[index].foodName
-                        } else {
-                            message.innerHTML = data
-                        }
-
-                        
-                    });
-                });
-
-                
+        replaceButton.addEventListener("click", () => {
+          fetch(`/replace?index=${index}`, {
+            method: "POST"
+          })
+            .then((response) => {
+              //kollar response i foodcontroller för att visa 200 eller felmeddelande
+              if (response.ok) {
+                return response.json();
+              } else {
+                return response.text();
+              }
+            })
+            .then((data) => {
+              if (Array.isArray(data)) {
+                div.querySelector("h2").innerHTML = data[index].foodName;
+              } else {
+                message.innerHTML = data;
+              }
             });
-
         });
+      });
+    });
 }
 
 button.addEventListener("click", () => {
-   startProgram(); 
-})
-
-resetButton.addEventListener("click", () => {
-    fetch("/reset")
-    .then(response => response.json())
-    .then(data => {
-        startProgram()
-    })
+  startProgram();
 });
 
+resetButton.addEventListener("click", () => {
+
+  fetch("/reset", {
+    method: "POST"
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      startProgram();
+    });
+});
