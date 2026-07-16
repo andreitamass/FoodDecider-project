@@ -2,7 +2,7 @@ const button = document.getElementById("choose-btn");
 
 const message = document.getElementById("message");
 
-const resetButton = document.getElementById("reset-button");
+const resetButton = document.getElementById("reset-btn");
 
 let interval;
 
@@ -28,6 +28,8 @@ function startProgram() {
       });
     }
   }, 1000);
+
+  document.getElementById("reset-btn").style.display = "block";
 
   document.getElementById("start-screen").style.display = "none";
 
@@ -95,6 +97,7 @@ resetButton.addEventListener("click", () => {
   })
     .then((response) => response.json())
     .then((data) => {
-      startProgram();
+        message.innerHTML = ""
+        startProgram();
     });
 });
